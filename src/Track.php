@@ -34,7 +34,7 @@
          */
         private $_data = [];
 
-        public function __construct($msg = 'Program start', $log_mode = false, $log_path = __DIR__ . "/../storage", $log_file_name = 'track_log.log')
+        public function __construct($msg = 'Program start', $log_mode = false, $log_path = __DIR__ . "/../../../../storage", $log_file_name = 'track_log.log')
         {
             $this->_start_time = time();
             $this->_msg = $msg;
