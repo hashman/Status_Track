@@ -1,0 +1,16 @@
+{
+    "name": "hashman/status_track",
+    "description": "You can add the status track checkpoint to check the program performance",
+    "authors": [
+        {
+            "name": "Hashman Lin",
+            "email": "coosos810609@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Track\\": "src/"
+        }
+    }
+}
