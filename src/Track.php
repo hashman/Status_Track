@@ -34,6 +34,13 @@
          */
         private $_data = [];
 
+        /**
+         * Track constructor
+         * @param string  $msg           Program title message
+         * @param boolean $log_mode      log mode if you want default using false
+         * @param string  $log_path      log file folder default use __DIR__ . "/../../../../storage
+         * @param string  $log_file_name log file name default use track_log.log
+         */
         public function __construct($msg = 'Program start', $log_mode = false, $log_path = __DIR__ . "/../../../../storage", $log_file_name = 'track_log.log')
         {
             $this->_start_time = time();
@@ -54,6 +61,10 @@
             $this->dataArrayInsert($msg, $this->_start_time);
         }
 
+        /**
+         * add checkpoint
+         * @param string $msg checkpoint name
+         */
         public function addCheckPoint($msg = 'Runs')
         {
             $this->dataArrayInsert($msg, time());
@@ -61,6 +72,10 @@
             $this->_current_time = time();
         }
 
+        /**
+         * run this function when you want to stop tracking
+         * @return void
+         */
         public function finish()
         {
             $this->_total_second = time() - $this->_start_time;
@@ -75,21 +90,42 @@
             }
         }
 
+        /**
+         * return take time percentage
+         * @param  int $take_time second
+         * @return int            return percentage number
+         */
         private function countPercentage($take_time)
         {
             return number_format(($take_time / $this->_total_second) * 100, 2);
         }
 
+        /**
+         * return convert unixtime to H:i:s time format
+         * @param  int    $time unixtime format
+         * @return string       time format
+         */
         private function returnTime($time)
         {
             return date("H:i:s", $time);
         }
 
+        /**
+         * insert checkpoint time in data array
+         * @param  string $name checkpoint name
+         * @param  int    $time unixtime
+         * @return void
+         */
         private function dataArrayInsert($name, $time)
         {
             array_push($this->_data, ['name' => $name, 'time' => $time]);
         }
 
+        /**
+         * convert second to second or minute or hour
+         * @param  int    $time second
+         * @return string       return take time
+         */
         private function convertResponseTime($time)
         {
             if ($time < 60) {
@@ -109,6 +145,11 @@
             return "{$hour} hours {$minute} minutes {$second} seconds";
         }
 
+        /**
+         * print result to log file or screen
+         * @param  string $string message
+         * @return void
+         */
         private function printResult($string)
         {
             if ($this->_log_mode) {
