@@ -70,7 +70,9 @@
                 $this->printResult("* {$this->_data[$i]['name']} : {$this->countPercentage($this->_data[$i]['time'] - $this->_data[$i - 1]['time'])} %\n");
             }
             $this->printResult("********************************\n");
-            fclose($this->_f);
+            if ($this->_log_mode) {
+                fclose($this->_f);
+            }
         }
 
         private function countPercentage($take_time)
